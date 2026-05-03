@@ -20,9 +20,12 @@
   <div class="card">
 
     <h1>Gerador de CPF</h1>
-    <p>Gere um CPF válido para testes. Não use para fins ilegais ou para se passar por outra pessoa.</p>
+    <p>Gere CPFs válidos para testes. Não use para fins ilegais ou para se passar por outra pessoa.</p>
 
-    <button onclick="generateCPF()">Gerar CPF</button>
+    <label>Quantidade de CPFs</label>
+    <input id="quantity" type="number" min="1" max="100" value="1">
+
+    <button onclick="generateCPFs()">Gerar CPF(s)</button>
 
     <div class="result" id="result"></div>
 
@@ -50,20 +53,39 @@ function formatCPF(numbers) {
   return numbers.join('').replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4');
 }
 
-function generateCPF() {
+function generateSingleCPF() {
   const numbers = [];
 
   for (let i = 0; i < 9; i++) {
     numbers.push(randomDigit());
   }
 
-  const digit1 = calculateDigit(numbers, 10);
-  numbers.push(digit1);
+  numbers.push(calculateDigit(numbers, 10));
+  numbers.push(calculateDigit(numbers, 11));
 
-  const digit2 = calculateDigit(numbers, 11);
-  numbers.push(digit2);
+  return formatCPF(numbers);
+}
 
-  document.getElementById('result').innerText = formatCPF(numbers);
+function generateCPFs() {
+  const quantityInput = document.getElementById('quantity');
+  let quantity = parseInt(quantityInput.value);
+
+  if (!quantity || quantity < 1) {
+    quantity = 1;
+  }
+
+  if (quantity > 100) {
+    quantity = 100;
+    quantityInput.value = 100;
+  }
+
+  const cpfs = [];
+
+  for (let i = 0; i < quantity; i++) {
+    cpfs.push(generateSingleCPF());
+  }
+
+  document.getElementById('result').innerHTML = cpfs.join('<br>');
 }
 </script>
 
