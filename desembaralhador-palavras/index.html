@@ -86,6 +86,47 @@ function canBuildWord(word, availableCounts) {
   return true;
 }
 
+function groupWordsByLength(words) {
+  const groups = {};
+
+  for (const word of words) {
+    const length = normalizeText(word).length;
+
+    if (!groups[length]) {
+      groups[length] = [];
+    }
+
+    groups[length].push(word);
+  }
+
+  return groups;
+}
+
+function renderGroupedResults(matches) {
+  const groups = groupWordsByLength(matches);
+
+  const lengths = Object.keys(groups)
+    .map(Number)
+    .sort((a, b) => b - a);
+
+  let html = '';
+
+  for (const length of lengths) {
+    const words = groups[length].sort((a, b) => a.localeCompare(b, 'pt-BR'));
+
+    html += `<h2 class="word-group-title">${length} letras</h2>`;
+    html += '<div class="word-group">';
+
+    for (const word of words) {
+      html += `<div class="word-result">${word}</div>`;
+    }
+
+    html += '</div>';
+  }
+
+  return html;
+}
+
 function findWords() {
   const lettersRaw = document.getElementById('letters').value;
   const minLength = parseInt(document.getElementById('minLength').value) || 1;
@@ -115,16 +156,11 @@ function findWords() {
     }
   }
 
-  matches.sort((a, b) => {
-    if (b.length !== a.length) return b.length - a.length;
-    return a.localeCompare(b, 'pt-BR');
-  });
-
   document.getElementById('summary').innerText =
     matches.length + ' palavra(s) encontrada(s)';
 
   document.getElementById('results').innerHTML =
-    matches.map(word => '<div class="word-result">' + word + '</div>').join('');
+    matches.length > 0 ? renderGroupedResults(matches) : '';
 }
 </script>
 
