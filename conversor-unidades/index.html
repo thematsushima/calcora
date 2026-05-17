@@ -174,11 +174,53 @@ function convert() {
     return;
   }
 
+  if (category === "combustivel") {
+    convertFuel(value);
+    return;
+  }
+
   const from = fromUnit.value;
   const to = toUnit.value;
 
   const baseValue = value * categories[category][from];
   const result = baseValue / categories[category][to];
+
+  document.getElementById("result").innerText =
+    `${value} ${from} = ${result.toFixed(4)} ${to}`;
+}
+
+function convertFuel(value) {
+
+  const from = fromUnit.value;
+  const to = toUnit.value;
+
+  let kmPerLiter;
+
+  if (from === "km/l") {
+    kmPerLiter = value;
+  }
+
+  if (from === "mpg_us") {
+    kmPerLiter = value * 0.425144;
+  }
+
+  if (from === "L/100km") {
+    kmPerLiter = 100 / value;
+  }
+
+  let result;
+
+  if (to === "km/l") {
+    result = kmPerLiter;
+  }
+
+  if (to === "mpg_us") {
+    result = kmPerLiter / 0.425144;
+  }
+
+  if (to === "L/100km") {
+    result = 100 / kmPerLiter;
+  }
 
   document.getElementById("result").innerText =
     `${value} ${from} = ${result.toFixed(4)} ${to}`;
