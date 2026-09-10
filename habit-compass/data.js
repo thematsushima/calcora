@@ -45,7 +45,7 @@ export const DATA = {
   "contexts": [
     {
       "id": 41,
-      "text": "What currently helps you attend dancing, PT, or another regular activity most?",
+      "text": "What currently helps you regularly go to the gym, exercise, or take part in another activity most?",
       "max": 2,
       "options": [
         "Enjoying the activity",
@@ -59,7 +59,7 @@ export const DATA = {
     },
     {
       "id": 42,
-      "text": "What most often makes your preferred eating routine difficult?",
+      "text": "If you were to follow a diet, what would be most difficult for you?",
       "max": 2,
       "options": [
         "Hunger or not feeling satisfied",
