@@ -1,5 +1,5 @@
 export const DATA = {
-  "version": "1.0.0",
+  "version": "1.1.0",
   "statements": [
     "I’m more likely to repeat something when it feels good straight afterwards.",
     "Having an activity booked into my calendar helps me follow through.",

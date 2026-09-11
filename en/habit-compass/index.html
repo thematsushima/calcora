@@ -3,9 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Explore what makes everyday habits enjoyable and manageable. A private, research-informed reflection.">
-  <meta name="theme-color" content="#123dce">
-  <title>Habit Compass - Calcora</title>
+  <meta name="description" content="Discover your habit profile with a private, research-informed reflection on what helps habits stick.">
+  <meta name="theme-color" content="#22c55e">
+  <title>Habit Compass: Discover Your Habit Profile - Calcora</title>
   <link rel="stylesheet" href="styles.css">
   <style>
     .brand {
@@ -134,6 +134,13 @@
     :focus-visible {
       outline-color: var(--green-dark);
     }
+  </style>
+  <style>
+    .profile-subtitle { color: #16a34a; font-size: 1.15rem; font-weight: 700; margin-bottom: 8px; }
+    .profile-card { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(220px, 1fr); gap: 28px; align-items: center; margin: 22px 0; padding: 24px; border: 1px solid #bbf7d0; border-radius: 16px; background: linear-gradient(135deg, #f0fdf4, #eff6ff); }
+    .profile-card h2 { margin: 6px 0 0; font-size: 1.25rem; }
+    .profile-card p { margin: 0; color: #4b5563; font-size: .9rem; }
+    @media (max-width: 760px) { .profile-card { grid-template-columns: 1fr; gap: 14px; } }
   </style>
   <script type="module" src="app.js"></script>
   <script src="content-overrides.js" defer></script>
